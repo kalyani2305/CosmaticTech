@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --color-primary: #cb2d5a;
+  --color-primary-light: #e04d72;
+  --color-accent-gold: #c9a962;
+  --color-mauve: #b794b4;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #1a1a1a;
+  background: #faf9f7;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-primary-700 transition-colors;
+  }
+  .btn-secondary {
+    @apply border border-primary-600 text-primary-600 px-5 py-2.5 rounded-lg font-medium hover:bg-primary-50 transition-colors;
+  }
+  .input-field {
+    @apply w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none;
+  }
+}

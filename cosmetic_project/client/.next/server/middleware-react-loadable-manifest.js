@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"app\\\\products\\\\[id]\\\\page.tsx -> @/services/reviewService":{"id":4482,"files":[]}}';
