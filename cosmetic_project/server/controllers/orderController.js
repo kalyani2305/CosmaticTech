@@ -39,7 +39,15 @@ export const createOrder = async (req, res) => {
       await supabase.from('order_items').insert({ order_id: order.id, ...oi });
     }
     for (const item of items) {
-      await supabase.rpc('decrement_stock', { p_id: item.product_id, amount: item.quantity }).catch(() => {});
+      try {
+        const { error: rpcError } = await supabase.rpc('decrement_stock', {
+          p_id: item.product_id,
+          amount: item.quantity,
+        });
+        if (rpcError) throw rpcError;
+      } catch {
+        // Ignore RPC errors: we keep the direct update fallback below.
+      }
       const p = productMap[item.product_id];
       if (p) {
         await supabase.from('products').update({ stock: p.stock - item.quantity }).eq('id', item.product_id);
